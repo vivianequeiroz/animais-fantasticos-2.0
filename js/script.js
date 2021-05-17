@@ -18,7 +18,6 @@ const accordion = new Accordion('[data-anime="accordion"] dt');
 accordion.init();
 
 initAnimacaoScroll();
-initAccordion();
 initTabNav();
 initModal();
 initTooltip();
