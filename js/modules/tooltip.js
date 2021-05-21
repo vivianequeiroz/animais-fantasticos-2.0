@@ -2,7 +2,6 @@ export default class Tooltip {
   constructor(tooltips) {
     this.tooltips = document.querySelectorAll(tooltips);
 
-    // bind objeto da classe para os callbacks
     this.onMouseLeave = this.onMouseLeave.bind(this);
     this.onMouseMove = this.onMouseMove.bind(this);
     this.onMouseOver = this.onMouseOver.bind(this);
@@ -10,13 +9,17 @@ export default class Tooltip {
 
   onMouseMove(event) {
     this.tooltipBox.style.top = `${event.pageY + 20}px`;
-    this.tooltipBox.style.left = `${event.pageX + 20}px`;
+    if (event.pageX + 240 > window.innerWidth) {
+      this.tooltipBox.style.left = `${event.pageX - 190}px`;
+    } else {
+      this.tooltipBox.style.left = `${event.pageX + 20}px`;
+    }
   }
 
-  onMouseLeave(event) {
+  onMouseLeave({ currentTarget }) {
     this.tooltipBox.remove();
-    event.currentTarget.element.removeEventListener('mouseleave', this.onMouseLeave);
-    event.currentTarget.element.removeEventListener('mousemove', this.onMouseMove);
+    currentTarget.removeEventListener('mouseleave', this.onMouseLeave);
+    currentTarget.removeEventListener('mousemove', this.onMouseMove);
   }
 
   criarTooltipBox(element) {
@@ -28,10 +31,10 @@ export default class Tooltip {
     this.tooltipBox = tooltipBox;
   }
 
-  onMouseOver(event) {
-    this.criarTooltipBox(event.currentTarget);
-    this.currentTarget('mousemove', this.onMouseMove);
-    this.currentTarget('mouseleave', this.onMouseLeave);
+  onMouseOver({ currentTarget }) {
+    this.criarTooltipBox(currentTarget);
+    currentTarget.addEventListener('mousemove', this.onMouseMove);
+    currentTarget.addEventListener('mouseleave', this.onMouseLeave);
   }
 
   addTooltipsEvent() {
