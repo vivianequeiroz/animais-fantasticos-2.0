@@ -1,9 +1,11 @@
+/* eslint-disable no-param-reassign */
 export default class AnimaNumeros {
   constructor(numeros, observerTarget, observerClass) {
     this.numeros = document.querySelectorAll(numeros);
     this.observerTarget = document.querySelector(observerTarget);
     this.observerClass = observerClass;
 
+    // bind o this do objeto ao callback da mutação
     this.handleMutation = this.handleMutation.bind(this);
   }
 
@@ -13,9 +15,9 @@ export default class AnimaNumeros {
     let start = 0;
     const timer = setInterval(() => {
       start += incremento;
-      this.numero.innerText = start;
+      numero.innerText = start;
       if (start > total) {
-        this.numero.innerText = total;
+        numero.innerText = total;
         clearInterval(timer);
       }
     }, 25 * Math.random());
@@ -41,5 +43,6 @@ export default class AnimaNumeros {
     if (this.numeros.length && this.observerTarget) {
       this.addMutationObserver();
     }
+    return this;
   }
 }
