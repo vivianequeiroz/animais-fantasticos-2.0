@@ -1,9 +1,13 @@
+/* eslint-disable import/extensions */
+/* eslint-disable import/no-unresolved */
+import debounce from './helpers/debounce.js';
+
 export default class ScrollAnima {
   constructor(sections) {
     this.sections = document.querySelectorAll(sections);
     this.windowMetade = window.innerHeight * 0.6;
 
-    this.checkDistance = this.checkDistance.bind(this);
+    this.checkDistance = debounce(this.checkDistance.bind(this), 200);
   }
 
   // Get each item distance in comparison to site top
