@@ -12,7 +12,7 @@ export default class MenuMobile {
     if (events === undefined) this.events = ['touchstart', 'click'];
     else this.events = events;
 
-    this.openMenu = this.openMenu.bind();
+    this.openMenu = this.openMenu.bind(this);
   }
 
   openMenu() {
