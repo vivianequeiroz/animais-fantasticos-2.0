@@ -1,0 +1,66 @@
+.galeria {
+  grid-column: 1 / -1;
+}
+
+.slide-wrapper {
+  overflow: hidden;
+  grid-column: 1 / -1;
+}
+
+.slide {
+  display: flex;
+}
+
+/* To improve performance */
+.slide:hover {
+  will-change: transform;
+}
+
+.slide li {
+  flex-shrink: 0;
+  width: 80vw;
+  max-width: 800px;
+  margin: 0 1.25rem;
+
+  overflow: hidden;
+  opacity: 0.8;
+  transform: scale(0.8);
+  transition: 0.4s;
+}
+
+.slide li.active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.custom-controls {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  grid-column: 1 / -1;
+}
+
+.custom-controls li img {
+  opacity: .8;
+  transform: scale(.8);
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: .125rem;
+  box-shadow: 0 .125rem .125rem rgba(0,0,0,.5);
+  transition: .3s;
+}
+
+.custom-controls li.active img {
+  opacity: 1;
+  transform: scale(1);
+}
+
+
+/*slide {
+                       changing the first number the slide effect occurs
+                      to do this, mouse movement and click events can be used as
+                      a guide to change its value 
+  transform: translate3d(-500px, 0, 0, 0);
+}*/
